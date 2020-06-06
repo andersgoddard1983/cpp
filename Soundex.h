@@ -41,11 +41,14 @@ private:
   void encodeTail(std::string& encoding, const std::string& word) const {
     for (auto letter: tail(word)){
       if (isComplete(encoding)) break;
-
-      auto digit = encodedDigit(letter);
-      if (digit != NotADigit && digit != lastDigit(encoding))
-	encoding += digit;
+      encodeLetter(encoding, letter);
+    }
   }
+
+  void encodeLetter(std::string& encoding, char letter) const {
+    auto digit = encodedDigit(letter);
+    if (digit != NotADigit && digit != lastDigit(encoding))
+      encoding += digit;
   }
 
   std::string lastDigit(const std::string& encoding) const {
