@@ -53,6 +53,10 @@ private:
     return word + std::string(zerosNeeded, '0');
   }
 
+  char lower(char c) const {
+    return std::tolower(static_cast<unsigned char>(c));
+  }
+
 public:
   std::string encodedDigit(char letter) const {
     const std::unordered_map<char, std::string> encodings {
@@ -64,7 +68,7 @@ public:
 							   {'m', "5"}, {'n', "5"},
 							   {'r', "6"}
     };
-    auto it = encodings.find(letter);
+    auto it = encodings.find(lower(letter));
     return it == encodings.end() ? NotADigit : it->second;		   
   }
 };
